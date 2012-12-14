@@ -5,8 +5,8 @@
 [hub]
         protocol = https
 [user]
-        name = Zach Holman
-        email = zach@zachholman.com
+	name = Alex Dong
+	email = Alex Dong
 [credential]
         helper = osxkeychain
 [alias]

@@ -1,1 +1,2 @@
-export EDITOR='subl'
+export EDITOR='vim'
+export PAGER='less -R'
