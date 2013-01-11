@@ -84,7 +84,7 @@
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
-set history=300
+set history=3000
 
 "Running vim, not Vi
 set nocompatible
@@ -111,14 +111,17 @@ source $VIMRUNTIME/macros/matchit.vim
 let mapleader = ","
 let g:mapleader = ","
 
+" j j to exit from insert mode 
+imap jj <esc>
+
 " Fast saving
 nmap <leader>w :w!<cr>
 
 " Fast editing of the .vimrc
-map <leader>e :e! ~/.vim_runtime/vimrc<cr>
+map <leader>e :e! ~/.vimrc<cr>
 
 " When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
+autocmd! bufwritepost vimrc source ~/.vimrc
 
 
 """"""""""""""""""""""""""""""
@@ -551,7 +554,9 @@ endfunction
 """"""""""""""""""""""""""""""
 au FileType go call GoSettings()
 function! GoSettings()
-    set expandtab=off 
+  setl noexpandtab
+  set ts=4  " Tabs are 4 spaces
+  set shiftwidth=4  " Tabs under smart indent
 endfunction
 
 

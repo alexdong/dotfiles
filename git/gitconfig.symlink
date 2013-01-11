@@ -6,7 +6,7 @@
         protocol = https
 [user]
 	name = Alex Dong
-	email = Alex Dong
+	email = alex.dong@gmail.com
 [credential]
         helper = osxkeychain
 [alias]
@@ -26,8 +26,8 @@
 [apply]
         whitespace = nowarn
 [mergetool]
-        keepBackup = false
+        keepBackup = true
 [difftool]
-        prompt = false
+        prompt = true
 [help]
         autocorrect = 1

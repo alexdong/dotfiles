@@ -1,2 +1,5 @@
 alias sz='source ~/.zshrc'
 alias vz='vim /Users/alexdong/.dotfiles/zsh/aliases.zsh'
+alias gosrc='cd ~/Projects/go/src/pkg'
+alias ts='cd ~/Golang/src/tsdb'
+alias gt='go test'
