@@ -1,0 +1,45 @@
+[DESIGN]
+
+# We are capable to follow that many, yes!
+max-branchs = 20
+
+# some base class constructors have quite a few arguments
+max-args = 14
+
+# and due to ClassWithCollections and conditional attributes classes by default have lots
+# of attributes
+max-attributes = 14
+
+# some sci computation can't be handled efficiently without having
+#lots of locals
+max-locals = 35
+
+[MESSAGES CONTROL]
+# Disable the following PyLint messages:
+# R0903 - Not enough public methods
+# R0904 - Too many public methods.
+# W0142 - Used * or ** magic
+# W0232 - Class has no __init__ method
+# W0221 - Arguments number differs from interface
+# W0201 - Member variable defined out of __init__
+# C0103 - Variable naming conventions
+disable=R0903,R0904,W0142,W0232,W0221,W0201
+
+[REPORTS]
+
+# set the output format. Available formats are text, parseable, colorized and
+# html
+output-format=colorized
+
+# Include message's id in output
+include-ids=yes
+
+# Tells wether to display a full report or only the messages
+reports=no
+
+[MISCELLANEOUS]
+
+# List of note tags to take in consideration, separated by a comma.
+# FIXME -- something which needs fixing
+# TODO  -- future plan
+notes=FIXME

@@ -1,5 +1,11 @@
 alias sz='source ~/.zshrc'
 alias vz='vim /Users/alexdong/.dotfiles/zsh/aliases.zsh'
-alias gosrc='cd ~/Projects/go/src/pkg'
-alias ts='cd ~/Golang/src/tsdb'
-alias gt='go test'
+alias svr='ssh link.sr'
+
+alias ntc='nosetests --with-cov --cov-report term-missing'
+alias ntf='nosetests --failed --nocapture '
+
+alias -s py=vim
+alias -s rb=mate
+alias -s log="less -MN"
+alias -s html="firefox"

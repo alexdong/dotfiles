@@ -117,11 +117,15 @@ imap jj <esc>
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" Fast editing of the .vimrc
-map <leader>e :e! ~/.vimrc<cr>
+" Reload all buffer files from disk
+" Useful after a `git pull`. 
+map <leader>r bufdo :e! <cr>
 
-" When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vimrc
+
+
+let g:syntastic_mode_map = { 'mode': 'passive',
+            \ 'active_filetypes': ['ruby', 'java'],
+            \ 'passive_filetypes': ['puppet', 'python', 'javascript'] }
 
 
 """"""""""""""""""""""""""""""
@@ -179,8 +183,8 @@ set clipboard+=unnamed " Yanks go on clipboard instead
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set expandtab
-set shiftwidth=2
-set tabstop=2
+set shiftwidth=4
+set tabstop=4
 set smarttab
 set lbr
 
@@ -521,9 +525,7 @@ imap <S-CR>    <CR><CR>end<Esc>-cc
 autocmd FileType ruby compiler ruby
 au FileType ruby call RubySettings()
 function! RubySettings()
-  set ts=2  " Tabs are 2 spaces
-  set bs=2  " Backspace over everything in insert mode
-  set shiftwidth=2  " Tabs under smart indent
+  set shiftwidth=4  " Tabs under smart indent
   set nocp incsearch
   set cinoptions=:0,p0,t0
   set cinwords=if,else,while,do,for,switch,case
@@ -568,7 +570,7 @@ function! JavaScriptSettings()
     set makeprg=java\ org.mozilla.javascript.tools.shell.Main\ ~/bin/jslint.js\ %
     set errorformat=%f(%l):\ %m
     set ts=2  " Tabs are 4 spaces
-    set shiftwidth=2  " Tabs under smart indent
+    set shiftwidth=4  " Tabs under smart indent
     set nocp incsearch
     set cinoptions=:0,p0,t0
     set cinwords=if,else,while,do,for,switch,case
@@ -580,7 +582,7 @@ endfunction
 """"""""""""""""""""""""""""""
 " => Less section
 """""""""""""""""""""""""""""""
-au BufNewFile,BufRead *.less set filetype=less
+" au BufNewFile,BufRead *.less set filetype=css
 au BufNewFile,BufRead *.scss set filetype=scss
 au BufNewFile,BufRead *.jst.* set filetype=html
 
@@ -588,7 +590,7 @@ au BufNewFile,BufRead *.jst.* set filetype=html
 """"""""""""""""""""""""""""""
 " => html section
 """""""""""""""""""""""""""""""
-au FileType xhtml,xml,html,htmljinja so ~/.vim_runtime/ftplugin/html_autoclosetag.vim
+au FileType xhtml,xml,html,htmljinja so ~/.vim/ftplugin/html_autoclosetag.vim
 
 """"""""""""""""""""""""""""""
 " => Jinja section
@@ -639,6 +641,9 @@ endtry
 noremap <Leader>ev :e ~/.vim_runtime/vimrc<CR>
 noremap <Leader>sv :so ~/.vim_runtime/vimrc<CR>
 
+" When vimrc is edited, reload it
+autocmd! bufwritepost vimrc source ~/.vimrc
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MISC
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -647,9 +652,6 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scripbble
 noremap <leader>q :e ~/buffer<CR>
-
-" Reload mod_wsgi for quick server side code changes
-noremap <Leader>r :!touch ./bin/run.wsgi<CR>
 
 " Surround current word with "
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel"
@@ -748,27 +750,12 @@ smap <C-k>     <Plug>(neocomplcache_snippets_expand)
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
-" SuperTab like snippets behavior.
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-
-" AutoComplPop like behavior.
-" let g:neocomplcache_enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
-"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 
 " Enable omni completion.
 autocmd FileType scss setlocal omnifunc=csscomplete#CompleteCSS
@@ -778,13 +765,6 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Clam support
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap ! :Clam<space>
-vnoremap ! :ClamVisual<space>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Switch support
