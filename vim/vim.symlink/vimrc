@@ -480,32 +480,30 @@ map <leader>p :cp<cr>
 """"""""""""""""""""""""""""""
 " => miniBuf plugin
 """"""""""""""""""""""""""""""
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
+" let g:miniBufExplMapWindowNavVim = 1
+" let g:miniBufExplMapWindowNavArrows = 1
+" let g:miniBufExplMapCTabSwitchBufs = 1
+" let g:miniBufExplModSelTarget = 1
 
 
 """"""""""""""""""""""""""""""
 " => bufExplorer plugin
 """"""""""""""""""""""""""""""
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerShowRelativePath=1
+" let g:bufExplorerDefaultHelp=0
+" let g:bufExplorerShowRelativePath=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
+" map <leader>ss :setlocal spell!<cr>
 
 "Shortcuts using <leader>
 map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
-
-au! BufRead,BufNewFile *.json setfiletype json
 
 """"""""""""""""""""""""""""""
 " => Ruby on Rails
@@ -608,23 +606,6 @@ function! CSSSettings()
 endfunction
 
 """"""""""""""""""""""""""""""
-" => Haskell section
-"""""""""""""""""""""""""""""""
-" use ghc functionality for haskell files
-au Bufenter *.hs compiler ghc
-
-" configure browser for haskell_doc.vim
-let g:haddock_browser = "open"
-let g:haddock_browser_callformat = "%s %s"
-let hs_highlight_delimiters = 1
-let hs_highlight_boolean = 1
-let hs_highlight_types = 1
-let hs_highlight_more_types = 1
-let hs_highlight_debug = 1
-let hs_allow_hash_operator = 1
-
-
-""""""""""""""""""""""""""""""
 " => Fuzzy finder
 """"""""""""""""""""""""""""""
 try
@@ -676,24 +657,6 @@ noremap <silent> <F5> :!/usr/local/bin/ctags -R .<CR>
 noremap <silent> <F6> :make<CR>
 inoremap <silent> <F5> <C-O>:make<CR>
 
-let g:CamelCaseComplete_complete = '.,w'
-let g:CamelCaseComplete_FindStartMark = ''
-let g:CamelCaseComplete_CaseInsensitiveFallback = 0
-
-map w <Plug>CamelCaseMotion_w
-map b <Plug>CamelCaseMotion_b
-map e <Plug>CamelCaseMotion_e
-unmap w
-unmap b
-unmap e
-
-omap iw <Plug>CamelCaseMotion_iw
-xmap iw <Plug>CamelCaseMotion_iw
-omap ib <Plug>CamelCaseMotion_ib
-xmap ib <Plug>CamelCaseMotion_ib
-omap ie <Plug>CamelCaseMotion_ie
-xmap ie <Plug>CamelCaseMotion_ie
-
 " Session
 let g:session_autoload = 'prompt'
 let g:session_autosave = 'yes'
@@ -701,24 +664,6 @@ set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 nmap <leader>ss :SaveSession<CR>   " Save session
 nmap <leader>so :OpenSession<CR>   " Open session
 nmap <leader>sd :DeleteSession<CR> " Delete session
-
-" Settings for VimClojure
-let vimclojure#HighlightBuiltins = 1
-let vimclojure#FuzzyIndent = 1
-let vimclojure#ParenRainbow = 1
-let vimclojure#ParenRainbowColors = {
-              \ '1': 'guifg=green',
-              \ '2': 'guifg=yellow',
-              \ '3': 'guifg=gray',
-              \ '4': 'guifg=red',
-              \ '5': 'guifg=purple',
-              \ '6': 'guifg=pink',
-              \ '7': 'guifg=cyan',
-              \ '8': 'guifg=orange',
-              \ }
-let vimclojure#DynamicHighlighting = 1
-let vimclojure#FuzzyIndent = 1
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NeoCompleteCache
