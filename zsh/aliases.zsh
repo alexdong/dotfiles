@@ -2,6 +2,8 @@ alias sz='source ~/.zshrc'
 alias vz='vim /Users/alexdong/.dotfiles/zsh/aliases.zsh'
 alias svr='ssh link.sr'
 alias mou="open /Applications/Mou.app"
+alias erldoc="erl -man "
+alias erl="rlwrap -aPassword: erl"
 
 alias nt='nosetests'
 alias ntc='nosetests --with-cov --cov-report term-missing'
