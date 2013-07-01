@@ -2,6 +2,9 @@ alias sz='source ~/.zshrc'
 alias vz='vim /Users/alexdong/.dotfiles/zsh/aliases.zsh'
 alias svr='ssh link.sr'
 alias mou="open /Applications/Mou.app"
+
+alias epoch="date +%s"
+
 alias erldoc="erl -man "
 alias erl="rlwrap -aPassword: erl"
 

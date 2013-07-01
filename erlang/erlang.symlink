@@ -1,1 +1,3 @@
-code:load_abs('~/.dotfiles/erlang/user_default').
+{ok, [Home|_]} = init:get_argument(home).
+Defaults = string:concat(hd(Home), "/.dotfiles/erlang/user_default").
+code:load_abs(Defaults).
