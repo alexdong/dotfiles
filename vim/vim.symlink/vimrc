@@ -29,15 +29,8 @@ set nocompatible
 " Auto-reload buffers
 set autoread
 
-" Set OmniCompletion
-let g:neocomplcache_enable_at_startup = 1
-
 " Display the cursor line. 
 set cursorline
-
-" Enable matchit
-source $VIMRUNTIME/macros/matchit.vim
-let loaded_matchit = 1
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -49,10 +42,6 @@ imap jj <esc>
 
 " Fast saving
 nmap <leader>w :w!<cr>
-
-let g:syntastic_mode_map = { 'mode': 'passive',
-            \ 'active_filetypes': ['ruby', 'java'],
-            \ 'passive_filetypes': ['puppet', 'python', 'javascript'] }
 
 
 """"""""""""""""""""""""""""""
@@ -200,35 +189,6 @@ noremap <C-l> <C-W>l
 map <right> :bn<cr>
 map <left> :bp<cr>
 
-" FuzzyFinder
-" ,f -> list all files in current director
-" ,b -> list all buffers
-" ,t -> auto complete/fuzzy find files. 
-" ,bt -> rebuild the tags file with fuzzyfinder specific tags. 
-nmap <leader>f :FufFileWithCurrentBufferDir<CR>
-nmap <leader>t :FufTaggedFile<CR>
-
-" NERDTree
-" ,d -> To open up NERD tree buffer
-" ,dd -> To close the NERD tree. 
-nmap <leader>d :NERDTree .<CR>
-nmap <leader>dd :NERDTreeClose<CR>
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=0
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
-let NERDChristmasTree=1
-let NERDTreeShowLineNumbers=1
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General Abbrevs
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -272,6 +232,17 @@ function! RubySettings()
   set formatoptions=tcqr
   set cindent
 endfunction
+"
+""""""""""""""""""""""""""""""
+" => Markdown section
+""""""""""""""""""""""""""""""
+au BufRead,BufNewFile *.md set filetype=markdown
+"
+""""""""""""""""""""""""""""""
+" => Less section
+""""""""""""""""""""""""""""""
+au BufRead,BufNewFile *.less set filetype=less
+
 
 """"""""""""""""""""""""""""""
 " => Python section
@@ -320,17 +291,11 @@ endfunction
 """"""""""""""""""""""""""""""
 " => Edit vimrc
 """"""""""""""""""""""""""""""
-noremap <Leader>ev :e ~/.vim_runtime/vimrc<CR>
-noremap <Leader>sv :so ~/.vim_runtime/vimrc<CR>
+noremap <Leader>ev :e ~/.vimrc<CR>
+noremap <Leader>sv :so ~/.vimrc<CR>
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => MISC
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Programming helps to quickly navigate the soruce "
 noremap <silent> <F1> :Ack <cword><CR>
@@ -341,54 +306,8 @@ noremap <silent> <F5> :!/usr/local/bin/ctags -R .<CR>
 noremap <silent> <F6> :make<CR>
 inoremap <silent> <F5> <C-O>:make<CR>
 
-" Session
-let g:session_autoload = 'prompt'
-let g:session_autosave = 'yes'
-set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-nmap <leader>ss :SaveSession<CR>   " Save session
-nmap <leader>so :OpenSession<CR>   " Open session
-nmap <leader>sd :DeleteSession<CR> " Delete session
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NeoCompleteCache
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-
 " Enable omni completion.
 autocmd FileType scss setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType less setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
